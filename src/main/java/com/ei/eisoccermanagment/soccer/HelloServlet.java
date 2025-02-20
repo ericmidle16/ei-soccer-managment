@@ -1,4 +1,4 @@
-package com.ei.eisoccermanagment;
+package com.ei.eisoccermanagment.soccer;
 
 import java.io.*;
 
