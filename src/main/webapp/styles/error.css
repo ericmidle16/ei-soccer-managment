@@ -1,0 +1,16 @@
+#youTubeButton {
+    padding: 15px 40px; /* Vertical and Horizontal padding to make it long */
+    background-color: #FF0000; /* YouTube Red color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 50px; /* Makes the button oval */
+    font-size: 18px; /* Font size */
+    cursor: pointer; /* Cursor changes to a pointer on hover */
+    text-align: center; /* Centers the text */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+}
+
+#youTubeButton:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
