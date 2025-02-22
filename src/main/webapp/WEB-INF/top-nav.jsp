@@ -1,0 +1,38 @@
+<header class="p-3 text-bg-light">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-3 mb-2" href="#">EI Soccer Management</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample09">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Support</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Tryout Info</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Locations</a></li>
+                <li><a class="dropdown-item" href="#">Available Teams</a></li>
+                <li><a class="dropdown-item" href="#">Coach Info</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="text-end">
+            <a href="#" class="btn btn-outline-dark me-2">Login</a>
+            <a href="#" class="btn btn-warning">Sign-up</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
