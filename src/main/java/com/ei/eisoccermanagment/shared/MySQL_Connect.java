@@ -1,7 +1,5 @@
 package com.ei.eisoccermanagment.shared;
 
-import io.github.cdimascio.dotenv.Dotenv;
-import io.github.cdimascio.dotenv.DotenvException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,13 +13,13 @@ public class MySQL_Connect {
             throw new SQLException("MySQL driver not found");
         }
 
-        Dotenv dotenv = null;
-        try {
-            dotenv = Dotenv.load();
-        } catch(DotenvException e) {
-            throw new SQLException("Could not find .env file");
+        String connectionString = "";
+        try{
+            connectionString = Config.getEnv("AZURE_MYSQL_CONNECTIONSTRING");
+        } catch (IllegalStateException e) {
+            throw new SQLException(e.getMessage());
         }
-        String connectionString = dotenv.get("AZURE_MYSQL_CONNECTIONSTRING");
+
         if(connectionString == null) {
             throw new SQLException("Connection string not found");
         }
