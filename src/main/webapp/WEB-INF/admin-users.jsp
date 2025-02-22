@@ -25,6 +25,8 @@
               <th scope="col">Privileges</th>
               <th scope="col">Created At</th>
               <th scope="col">Timezone</th>
+              <th scope="col">Pronoun</th>
+              <th scope="col">Biography</th>
             </tr>
             </thead>
             <tbody>
@@ -43,6 +45,8 @@
               <td>${user.privileges}</td>
               <td>${user.createdAt}</td>
               <td>${user.timezone}</td>
+              <td>${user.pronoun}</td>
+              <td>${user.biography}</td>
               </c:forEach>
             </tbody>
           </table>
