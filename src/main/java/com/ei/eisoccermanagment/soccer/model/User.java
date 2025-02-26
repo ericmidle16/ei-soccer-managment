@@ -1,5 +1,6 @@
 package com.ei.eisoccermanagment.soccer.model;
 
+import com.ei.eisoccermanagment.shared.Validators;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
@@ -51,7 +52,11 @@ public class User implements Comparable<User> {
         return email;
     }
 
+
     public void setEmail(String email) {
+        if (!Validators.isValidEmail(email)) {
+            throw new IllegalArgumentException("Invalid email address");
+        }
         this.email = email;
     }
 
@@ -67,7 +72,14 @@ public class User implements Comparable<User> {
         return password;
     }
 
+
     public void setPassword(char[] password) {
+        if (password != null) {
+            String passwordStr = String.valueOf(password);
+            if (!Validators.isStrongPassword(passwordStr)) {
+                throw new IllegalArgumentException("Password requires 8 characters with at least 3 out 4 (uppercase letter, lowercase letter, number, special character)");
+            }
+        }
         this.password = password;
     }
 

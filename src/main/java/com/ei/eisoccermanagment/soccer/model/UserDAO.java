@@ -17,6 +17,8 @@ public class UserDAO {
 
     public static void main(String[] args) {
         getAll().forEach(System.out::println);
+        System.out.println(get("test@example.com"));
+
     }
 
 //    public static String passwordReset(String email, HttpServletRequest req) {

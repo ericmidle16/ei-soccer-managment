@@ -10,7 +10,7 @@
         c:set set JSP variables, requires two attributes VAR and VALUE
 -->
 <c:choose>
-    <c:when test="${pageContext.request.serverName eq 'localHost'}">
+    <c:when test="${pageContext.request.serverName eq 'localhost'}">
         <!-- Do something on localHost only -->
         <c:set var="appURL" value="${initParam['appURLLocal']}"></c:set>
     </c:when>
