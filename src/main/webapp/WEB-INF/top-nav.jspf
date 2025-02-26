@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
       <div class="container-fluid">
-        <a class="navbar-brand fs-3 mb-2" href="#">EI Soccer Management</a>
+        <a class="navbar-brand fs-3 mb-2" href="${appURL}">EI Soccer Management</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,15 +21,15 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Tryout Info</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Locations</a></li>
-                <li><a class="dropdown-item" href="#">Available Teams</a></li>
+                <li><a class="dropdown-item" href="#">Available Games</a></li>
+                <li><a class="dropdown-item" href="#">Tryout Dates</a></li>
                 <li><a class="dropdown-item" href="#">Coach Info</a></li>
               </ul>
             </li>
           </ul>
           <div class="text-end">
             <a href="#" class="btn btn-outline-dark me-2">Login</a>
-            <a href="#" class="btn btn-warning">Sign-up</a>
+            <a href="${appURL}/signup" class="btn btn-warning">Sign-up</a>
           </div>
         </div>
       </div>

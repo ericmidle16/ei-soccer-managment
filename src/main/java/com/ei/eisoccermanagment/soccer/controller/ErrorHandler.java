@@ -21,7 +21,7 @@ public class ErrorHandler extends HttpServlet {
         errorMsg += "<strong>Request URI:</strong> " + req.getAttribute(ERROR_REQUEST_URI) + "<br>";
         req.setAttribute("errorMsg", errorMsg);
         req.setAttribute("pageTitle", "Error");
-        req.getRequestDispatcher("WEB-INF/error.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/error.jsp").forward(req, resp);
 
     }
 }

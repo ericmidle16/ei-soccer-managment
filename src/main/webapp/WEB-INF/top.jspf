@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@taglib prefix="fn" uri="jakarta.tags.functions" %>
+<jsp:useBean id="date" class="java.util.Date" />
 <fmt:setLocale value="en-US" />
 <!-- c:choose to write an if statement
         c:when is the if, requires TEST attribute
@@ -41,4 +42,4 @@
     <script src="${pageContext.request.contextPath}/scripts/error-scripts.js"></script>
 </head>
 <body>
-<%@include file="/WEB-INF/top-nav.jsp"%>
+<%@include file="/WEB-INF/top-nav.jspf"%>

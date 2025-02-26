@@ -5,15 +5,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-
-@WebServlet("")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/dat-signout")
+public class Signout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("pageTitle", "Home");
-        req.getRequestDispatcher("/WEB-INF/home.jsp").forward(req, resp);
+        HttpSession session = req.getSession(); // Get existing session
+        session.removeAttribute("activeUser");
+        session.setAttribute("flashMessageWarning", "You are logged out. See you next time!");
+        resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/")); // Redirects to the home page
     }
 }
-

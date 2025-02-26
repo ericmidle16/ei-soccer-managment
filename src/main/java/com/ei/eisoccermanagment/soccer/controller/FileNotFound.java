@@ -15,6 +15,6 @@ public class FileNotFound extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setAttribute("pageTitle", "File Not Found");
-        req.getRequestDispatcher("WEB-INF/fileNotFound.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/fileNotFound.jsp").forward(req, resp);
     }
 }

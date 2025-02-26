@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/bottom-nav.jsp" %>
+<%@include file="/WEB-INF/bottom-nav.jspf" %>
 <!-- Can add JavaScript files here -->
 
 </body>
