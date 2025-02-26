@@ -18,6 +18,14 @@
             <li class="nav-item">
               <a class="nav-link disabled" aria-disabled="true">Disabled</a>
             </li>
+            <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="${appURL}/users">All Users</a></li>
+                </ul>
+              </li>
+            </c:if>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Tryout Info</a>
               <ul class="dropdown-menu">
@@ -28,8 +36,16 @@
             </li>
           </ul>
           <div class="text-end">
-            <a href="#" class="btn btn-outline-dark me-2">Login</a>
-            <a href="${appURL}/signup" class="btn btn-warning">Sign-up</a>
+            <c:choose>
+              <c:when test="${empty sessionScope.activeUser}">
+                <a href="${appURL}/login" class="btn btn-outline-dark me-2">Login</a>
+                <a href="${appURL}/signup" class="btn btn-warning">Sign-up</a>
+              </c:when>
+              <c:otherwise>
+                <a href="#" class="btn btn-outline-secondary">Sign out</a>
+                <a href="#" class="btn btn-primary me-2">My Profile</a>
+              </c:otherwise>
+            </c:choose>
           </div>
         </div>
       </div>
