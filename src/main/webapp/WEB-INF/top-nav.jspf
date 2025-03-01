@@ -13,9 +13,6 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Support</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link disabled" aria-disabled="true">Disabled</a>
             </li>
             <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
@@ -27,10 +24,17 @@
               </li>
             </c:if>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Tryout Info</a>
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Available Games</a></li>
-                <li><a class="dropdown-item" href="#">Tryout Dates</a></li>
+                <li><a class="dropdown-item" href="#">Openings</a></li>
+                <li><a class="dropdown-item" href="#">Pricing</a></li>
+                <li><a class="dropdown-item" href="#">Merch</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Credentials</a></li>
                 <li><a class="dropdown-item" href="#">Coach Info</a></li>
               </ul>
             </li>
