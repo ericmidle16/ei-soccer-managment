@@ -49,28 +49,7 @@
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <c:forEach items ="${reviews}" var="reviews">
-                <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-m mb-2">${reviews.first_name}</div>
-                        <p class="text-gray-700 text-base">
-                                ${reviews.description}
-                        </p>
-                        <p class="text-gray-700 text-base">
-                            Currently looking for players!
-                        </p>
-                    </div>
-                    <div class="px-6 pt-4 pb-2">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                            Email
-                        </button>
-                    </div>  <%-- End Card body --%>
-                </div>  <%-- End Card --%>
-            </c:forEach>
-        </div>  <%-- End Grid --%>
-    </div>  <%-- End Container --%>
+    <%@ include file="/WEB-INF/review.jspf" %>
 
 
         <!-- START THE FEATURETTES -->

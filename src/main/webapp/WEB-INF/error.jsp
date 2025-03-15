@@ -1,18 +1,8 @@
-<main>
-  <div class="container pt-5">
-    <div class="row">
-      <div class="col-12 text-center">
-        <c:choose>
-          <c:when test="${initParam['debugging'] eq 'true'}">
-            <p>${errorMsg}</p>
-          </c:when>
-          <c:otherwise>
-            <h2>Oh no!</h2>
-            <p class="mb-4">Something went wrong. We are sorry for the inconvenience.</p>
-            <a href="${appURL}" class="btn btn-primary">Take me to the Homepage</a>
-          </c:otherwise>
-        </c:choose>
-      </div>
-    </div>
-  </div>
-</main>
+<div class="fnf-container">
+  <img src="${appURL}/images/scott-sterling.png" alt="Scott Sterling">
+  <p>
+    You sure you're okay? Let's head back!
+  </p>
+  <p>Click <a href="${appURL}">here</a> to go back to the homepage.</p>
+  <p class="youtube-link">Click <a href="https://www.youtube.com/watch?v=8F9jXYOH2c0" target="_blank">here</a> for context.</p>
+</div>

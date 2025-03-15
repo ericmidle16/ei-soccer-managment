@@ -1,11 +1,11 @@
-.error-container {
+.fnf-container {
     width: 80%;
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
 }
 
-.error-container img {
+.fnf-container img {
     display: block;
     margin: 0 auto;
     max-width: 100%;
@@ -14,8 +14,17 @@
     border-radius: 8px;
 }
 
-.error-container p {
-    font-size: 16px;
+.fnf-container p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.fnf-container p.youtube-link {
+    font-size: 12px;
+    font-weight: bold;
     color: #333;
     margin-top: 10px;
     text-align: center;

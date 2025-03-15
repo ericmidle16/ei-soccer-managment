@@ -19,8 +19,8 @@ public class AdminUsers extends HttpServlet {
         HttpSession session = req.getSession();
         User userFromSession = (User)session.getAttribute("activeUser");
         if(userFromSession == null || !userFromSession.getStatus().equals("active") || !userFromSession.getPrivileges().equals("admin")) {
-//            session.setAttribute("flashMessageWarning", "You do not have permission to access this page");
-//            resp.sendRedirect("login");
+            session.setAttribute("flashMessageWarning", "You do not have permission to access this page");
+            resp.sendRedirect("login");
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }

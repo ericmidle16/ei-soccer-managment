@@ -24,8 +24,8 @@ public class ResetPassword extends HttpServlet {
         String email = req.getParameter("email");
         req.setAttribute("email", email);
         // For this method use the string as the password reset message
-        //String message = UserDAO.passwordReset(email, req);
-        //req.setAttribute("passwordResetMsg", message);
+        String message = UserDAO.passwordReset(email, req);
+        req.setAttribute("passwordResetMsg", message);
         req.setAttribute("pageTitle", "Reset your password");
         req.getRequestDispatcher("WEB-INF/reset-password.jsp").forward(req, resp);
     }
