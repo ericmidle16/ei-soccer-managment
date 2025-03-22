@@ -1,22 +1,24 @@
-<div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <c:forEach items ="${reviews}" var="review">
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-m mb-2">${review.first_name}</div>
-                    <p class="text-gray-700 text-base">
-                            ${review.description}
-                    </p>
-                    <p class="text-gray-700 text-base">
-                        Currently looking for players!
-                    </p>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                        Email
-                    </button>
-                </div>  <%-- End Card body --%>
-            </div>  <%-- End Card --%>
+<section>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-xl-8 text-center">
+            <h3 class="mb-4">Testimonials</h3>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <c:forEach items="${reviews}" var="review">
+            <div class="col-md-4 mb-5 mb-md-0"> <!-- Each review takes up 4 columns -->
+<%--                <div class="d-flex justify-content-center mb-4">--%>
+<%--                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"--%>
+<%--                         class="rounded-circle shadow-1-strong" width="150" height="150" />--%>
+<%--                </div>--%>
+                <h5 class="mb-3">${review.first_name}</h5>
+                <h6 class="text-primary mb-3">Customer</h6>
+                <p class="px-xl-3">
+                    <i class="fas fa-quote-left pe-2"></i>
+                        ${review.description}
+                </p>
+            </div>
         </c:forEach>
-    </div>  <%-- End Grid --%>
-</div>
+    </div>
+</section>
