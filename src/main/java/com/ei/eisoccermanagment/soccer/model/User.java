@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class User implements Comparable<User> {
     private int userId;
@@ -65,6 +66,9 @@ public class User implements Comparable<User> {
     }
 
     public void setPhone(String phone) {
+        if (phone != null && !phone.equals("") && !Validators.isValidPhone(phone)) {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
         this.phone = phone;
     }
 
@@ -88,6 +92,9 @@ public class User implements Comparable<User> {
     }
 
     public void setLanguage(String language) {
+        if (!Validators.isValidLanguage(language)) {
+            throw new IllegalArgumentException("Invalid language");
+        }
         this.language = language;
     }
 
@@ -109,6 +116,9 @@ public class User implements Comparable<User> {
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+    public Date getCreatedAtDate() {
+        return Date.from(createdAt);
     }
 
     public void setCreatedAt(Instant createdAt) {

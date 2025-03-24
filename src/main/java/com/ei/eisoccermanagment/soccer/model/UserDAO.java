@@ -108,6 +108,35 @@ public class UserDAO {
         return false;
     }
 
+    public static boolean update(String originalEmail, User newUser) {
+        User existingUser = get(originalEmail);
+        try(Connection connection = getConnection();
+            CallableStatement statement = connection.prepareCall("{CALL sp_update_user(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")
+        ) {
+            statement.setInt(1, existingUser.getUserId());
+            statement.setString(2, existingUser.getFirstName());
+            statement.setString(3, existingUser.getLastName());
+            statement.setString(4, existingUser.getEmail());
+            statement.setString(5, existingUser.getPhone());
+            statement.setString(6, existingUser.getLanguage());
+            statement.setString(7, existingUser.getStatus());
+            statement.setString(8, existingUser.getPrivileges());
+            statement.setString(9, existingUser.getTimezone());
+            statement.setString(10, newUser.getFirstName());
+            statement.setString(11, newUser.getLastName());
+            statement.setString(12, newUser.getEmail());
+            statement.setString(13, newUser.getPhone());
+            statement.setString(14, newUser.getLanguage());
+            statement.setString(15, newUser.getStatus());
+            statement.setString(16, newUser.getPrivileges());
+            statement.setString(17, newUser.getTimezone());
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected == 1;
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static List<User> getAll() {
         List<User> list = new ArrayList<>();
         try (Connection connection = getConnection()) {
@@ -137,6 +166,7 @@ public class UserDAO {
         }
         return list;
     }
+
     public static User get(String email) {
         User user = null;
         try(Connection connection = getConnection()) {
