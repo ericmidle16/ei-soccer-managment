@@ -17,7 +17,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Openings</a></li>
                 <li><a class="dropdown-item" href="#">Pricing</a></li>
-                <li><a class="dropdown-item" href="#">Merch</a></li>
+                <li><a class="dropdown-item" href="${appURL}/shop">Merch</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -31,8 +31,9 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="${appURL}/users">All Users</a></li>
-                  <li><a class="dropdown-item" href="${appURL}/coaches">All Coaches</a></li>
+                  <li><a class="dropdown-item" href="${appURL}/users">Admin Users</a></li>
+                  <li><a class="dropdown-item" href="${appURL}/coaches">Admin Coaches</a></li>
+                  <li><a class="dropdown-item" href="${appURL}/coaches">Admin Products</a></li>
                 </ul>
               </li>
             </c:if>
