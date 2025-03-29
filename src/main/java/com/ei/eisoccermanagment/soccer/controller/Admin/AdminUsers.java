@@ -1,4 +1,4 @@
-package com.ei.eisoccermanagment.soccer.controller;
+package com.ei.eisoccermanagment.soccer.controller.Admin;
 
 import com.ei.eisoccermanagment.soccer.model.User;
 import com.ei.eisoccermanagment.soccer.model.UserDAO;

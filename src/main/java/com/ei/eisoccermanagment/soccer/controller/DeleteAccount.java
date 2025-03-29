@@ -17,7 +17,6 @@ public class DeleteAccount extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("activeUser");
-        // This is to redirect them in case they are not signed in or have an inactive account
         if(user == null) {
             session.setAttribute("flashMessageWarning", "You must be logged in to delete your account.");
             resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/login?redirect=delete-account"));
@@ -45,14 +44,15 @@ public class DeleteAccount extends HttpServlet {
             errorFound = true;
             session.setAttribute("flashMessageWarning", "You entered the wrong email.");
         }
+
         if(!errorFound) {
             boolean deleted = UserDAO.delete(user);
             if(deleted) {
-                // Invalidate the session data after deletion
                 session.invalidate();
-                // Creating a new session
                 session = req.getSession();
                 session.setAttribute("flashMessageWarning", "Your account has been deleted.");
+                resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/"));
+                return;
             }
         }
 
