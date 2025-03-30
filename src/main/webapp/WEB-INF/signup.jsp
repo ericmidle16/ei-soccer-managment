@@ -1,8 +1,8 @@
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vertically centered hero sign-up form</h1>
-            <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Your future looks bright!</h1>
+            <p class="col-lg-10 fs-4">Your development is our goal. Make sure to look at our reviews and merch.</p>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
             <c:if test="${not empty userAddFail}">
@@ -24,6 +24,7 @@
                     <label for="password2">Confirm Password</label>
                     <c:if test="${not empty password2Error}"><div class="invalid-feedback">${password2Error}</div></c:if>
                 </div>
+                <div class="g-recaptcha" data-sitekey="${grecap}"></div>
                 <div class="form-checkbox mb-3">
                     <input type="checkbox" class="<c:if test="${not empty termsError}">is-invalid</c:if>" value="agree" id="terms" name="terms" <c:if test="${terms eq 'agree'}">checked</c:if>>
                     <label for="terms">Agree to the <a href="${appURL}/terms">Terms of Service</a></label>

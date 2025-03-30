@@ -14,6 +14,8 @@ import java.io.IOException;
 public class Signup extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String grecap = System.getenv("GOOGLE_RECAPTCHA");
+        req.setAttribute("grecap", grecap);
         req.setAttribute("pageTitle", "Sign up for an account");
         req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
     }
