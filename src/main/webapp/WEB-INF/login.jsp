@@ -21,6 +21,7 @@
                 Remember me for 30 days
             </label>
         </div>
+        <div class="cf-turnstile" data-sitekey="${cft}"></div>
         <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
         <p class="my-3 text-body-secondary"><a href="${appURL}/reset-password">Forgot password?</a><br>Don't have an account? <a href="${appURL}/signup">Sign-up</a></p>
     </form>

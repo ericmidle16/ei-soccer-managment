@@ -33,7 +33,7 @@
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="${appURL}/users">Admin Users</a></li>
                   <li><a class="dropdown-item" href="${appURL}/coaches">Admin Coaches</a></li>
-                  <li><a class="dropdown-item" href="${appURL}/coaches">Admin Products</a></li>
+                  <li><a class="dropdown-item" href="${appURL}/products">Admin Products</a></li>
                 </ul>
               </li>
             </c:if>

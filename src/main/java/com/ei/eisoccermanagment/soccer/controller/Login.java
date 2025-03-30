@@ -18,6 +18,8 @@ public class Login extends HttpServlet {
         if(redirect != null && !redirect.equals("")) {
             req.setAttribute("redirect", redirect);
         }
+        String cft = System.getenv("CLOUDFLARE_TURNSTILE");
+        req.setAttribute("cft", cft);
         req.setAttribute("pageTitle", "Login");
         req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);
     }
