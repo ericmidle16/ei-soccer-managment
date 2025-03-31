@@ -38,6 +38,8 @@ public class EditProfile extends HttpServlet {
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
         String language = req.getParameter("language");
+        String pronoun = req.getParameter("pronoun");
+        String biography = req.getParameter("biography");
         req.setAttribute("email", email);
         req.setAttribute("phone", phone);
 
@@ -81,6 +83,24 @@ public class EditProfile extends HttpServlet {
         } catch(IllegalArgumentException e) {
             errorFound = true;
             req.setAttribute("languageError", e.getMessage());
+        }
+
+        try {
+            if(!pronoun.equals(user.getPronoun())) {
+                user.setPronoun(pronoun);
+            }
+        } catch(IllegalArgumentException e) {
+            errorFound = true;
+            req.setAttribute("pronounError", e.getMessage());
+        }
+
+        try {
+            if(!biography.equals(user.getBiography())) {
+                user.setBiography(biography);
+            }
+        } catch(IllegalArgumentException e) {
+            errorFound = true;
+            req.setAttribute("pronounError", e.getMessage());
         }
 
         if(!errorFound) {

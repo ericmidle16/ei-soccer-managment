@@ -1,12 +1,15 @@
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    var turnstileResponse = document.querySelector('.cf-turnstile input[name="cf-turnstile-response"]').value;
 
-// This is to direct people to external link for help
-document.addEventListener("DOMContentLoaded", function() {
-    const button = document.getElementById("youTubeButton");
-    if (button) {
-        button.addEventListener("click", function() {
-            window.location.href = "https://www.youtube.com/watch?v=01fRSHG3w5k";
-        });
-    } else {
-        console.error("Button not found!");
+    if (!turnstileResponse) {
+        event.preventDefault();
+        alert('Please complete the CAPTCHA.');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if there is a failed login, and if so, reinitialize Turnstile
+    if (document.querySelector('.cf-turnstile')) {
+        Turnstile.render('.cf-turnstile'); // Re-render Turnstile widget
     }
 });

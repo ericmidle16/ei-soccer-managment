@@ -26,3 +26,13 @@
         <p class="my-3 text-body-secondary"><a href="${appURL}/reset-password">Forgot password?</a><br>Don't have an account? <a href="${appURL}/signup">Sign-up</a></p>
     </form>
 </main>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        var turnstileResponse = document.querySelector('.cf-turnstile input[name="cf-turnstile-response"]').value;
+
+        if (!turnstileResponse) {
+            event.preventDefault();
+            alert('Please complete the CAPTCHA.');
+        }
+    });
+</script>

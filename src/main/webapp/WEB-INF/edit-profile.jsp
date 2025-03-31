@@ -60,6 +60,23 @@
                   <c:if test="${not empty languageError }"><div class="invalid-feedback">${languageError}</div></c:if>
                 </div>
 
+                <div class="col-md-6">
+                  <!-- Pronoun Preference -->
+                  <label class="form-label" for="pronoun">Pronouns</label>
+                  <select class="<c:if test="${not empty pronounError}">is-invalid</c:if> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="pronoun" name="pronoun">
+                    <option value="He/Him" ${sessionScope.activeUser.pronoun == 'He/Him' ? 'selected' : ''}>He/Him</option>
+                    <option value="She/Her" ${sessionScope.activeUser.pronoun == 'She/Her' ? 'selected' : ''}>She/Her</option>
+                    <option value="Other" ${sessionScope.activeUser.pronoun == 'Other' ? 'selected' : ''}>Other</option>
+                  </select>
+                  <c:if test="${not empty pronounError }"><div class="invalid-feedback">${pronounError}</div></c:if>
+                </div>
+
+                <div class="col-md-12">
+                  <label class="form-label" for="biography">Biography</label>
+                  <input class="<c:if test="${not empty biographyError}">is-invalid</c:if> form-control" type="text" id="biography" name="biography" value="${fn:escapeXml(sessionScope.activeUser.biography)}">
+                  <c:if test="${not empty biographyError}"><div class="invalid-feedback">${biographyError}</div></c:if>
+                </div>
+
                 <!-- Save button -->
                 <div class="d-sm-flex justify-content-end">
                   <button type="submit" class="btn btn-primary mb-0">Save changes</button>

@@ -139,7 +139,7 @@ public class AdminUpdateCoach extends HttpServlet {
             if(coachUpdated) {
                 req.setAttribute("coachUpdatedMessage", "Successfully updated coach!");
             } else {
-                req.setAttribute("coachUpdatedMessage", "Failed to coach vendor!");
+                req.setAttribute("coachUpdatedMessage", "Failed to update coach!");
             }
         }
 

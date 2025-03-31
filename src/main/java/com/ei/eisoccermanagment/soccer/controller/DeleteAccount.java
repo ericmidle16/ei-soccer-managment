@@ -26,6 +26,7 @@ public class DeleteAccount extends HttpServlet {
             resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/"));
             return;
         }
+        req.setAttribute("activeUser", user);
         req.setAttribute("pageTitle", "Delete Account");
         req.getRequestDispatcher("WEB-INF/delete-account.jsp").forward(req, resp);
     }
@@ -40,7 +41,7 @@ public class DeleteAccount extends HttpServlet {
 
         boolean errorFound = false;
         User userFromDatabase = UserDAO.get(email);
-        if(userFromDatabase == null) {
+        if(userFromDatabase == null || !user.getEmail().equals(email)) {
             errorFound = true;
             session.setAttribute("flashMessageWarning", "You entered the wrong email.");
         }
