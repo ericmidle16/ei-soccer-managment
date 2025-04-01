@@ -42,7 +42,7 @@ public class UserDAO {
                     message += "<p>Please use this link to securely reset your password. This link will remain active for 30 minutes.</p>";
                     String appUrl = "";
                     if(req.isSecure()) {
-                        appUrl = req.getServletContext().getInitParameter("appURLAzure");
+                        appUrl = req.getServletContext().getInitParameter("appURLCloud");
                     } else {
                         appUrl = req.getServletContext().getInitParameter("appURLLocal");
                     }

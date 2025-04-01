@@ -40,9 +40,9 @@ public class AdminUpdateCoach extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        String id = req.getParameter("id"); // Vendor id from the hidden field
+        String id = req.getParameter("id"); // Coach id from the hidden field
         req.setAttribute("id", id);
-        String coachId = req.getParameter("coachId"); // Vendor id from the form
+        String coachId = req.getParameter("coachId"); // Coach id from the form
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
         String email = req.getParameter("email");
