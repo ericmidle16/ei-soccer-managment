@@ -28,7 +28,9 @@
             <tr>
               <td>
                 <a href="${appURL}/edit-product?id=${product.productId}" class="btn btn-sm btn-outline-primary">Update</a>
-                <a href="${appURL}/delete-product?id=${product.productId}" class="btn btn-sm btn-outline-danger">Delete</a>
+                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#productDeleteModal" data-productid="${product.productId}">
+                  Delete
+                </button>
               </td>
               <td>${product.name}</td>
               <td><fmt:formatNumber value="${product.price}" type="currency" /></td>
@@ -42,4 +44,5 @@
     </div> <%-- Col END --%>
   </div> <%-- Row END --%>
 </div> <%-- Container END --%>
+<%@ include file="/WEB-INF/admin-delete-product.jspf" %>
 

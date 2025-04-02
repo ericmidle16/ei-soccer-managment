@@ -89,4 +89,15 @@ public class ProductDAO {
             return false;
         }
     }
+
+    public static boolean delete(String id) {
+        try(Connection connection = getConnection()) {
+            CallableStatement statement = connection.prepareCall("{CALL sp_delete_product(?)}");
+            statement.setInt(1, Integer.parseInt(id));
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

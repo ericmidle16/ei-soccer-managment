@@ -91,6 +91,16 @@ public class UserDAO {
         return email;
     }
 
+    public static void deletePasswordReset(String email) {
+        try (Connection connection = getConnection();
+             CallableStatement statement = connection.prepareCall("{CALL sp_delete_password_reset(?)}")) {
+            statement.setString(1, email);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static boolean updatePassword(String email, String password) {
         try (Connection connection = getConnection()) {
             if (connection != null) {

@@ -31,7 +31,10 @@
                         <tr>
                             <td>
                                 <a href="${appURL}/edit-coach?id=${coach.coachId}" class="btn btn-sm btn-outline-primary">Update</a>
-                                <a href="${appURL}/delete-coach?id=${coach.coachId}" class="btn btn-sm btn-outline-danger">Delete</a>
+                                <!--<button type="button" class="btn btn-sm btn-outline-danger" onclick="showDeleteModal(${coach.coachId})">Delete</button>-->
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-coachid="${coach.coachId}">
+                                    Delete
+                                </button>
                             </td>
                             <td>${coach.firstName}</td>
                             <td>${coach.lastName}</td>
@@ -48,3 +51,4 @@
         </div> <%-- Col END --%>
     </div> <%-- Row END --%>
 </div> <%-- Container END --%>
+<%@ include file="/WEB-INF/admin-delete-coach.jspf" %>

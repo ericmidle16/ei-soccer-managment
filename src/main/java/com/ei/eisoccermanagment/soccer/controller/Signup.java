@@ -22,10 +22,14 @@ public class Signup extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         String email = req.getParameter("email");
         String password1 = req.getParameter("password1");
         String password2 = req.getParameter("password2");
         String[] terms = req.getParameterValues("terms");
+        String grecap = System.getenv("GOOGLE_RECAPTCHA");
+        req.setAttribute("grecap", grecap);
+        String googleResponse = req.getParameter("g-recaptcha-response");
         req.setAttribute("email", email);
         req.setAttribute("password1", password1);
         req.setAttribute("password2", password2);
@@ -61,6 +65,11 @@ public class Signup extends HttpServlet {
             errorFound = true;
             req.setAttribute("termsError", "You must agree to our terms of use");
         }
+        if (googleResponse == null || googleResponse.isEmpty()) {
+            errorFound = true;
+            // Flash messages are for sessions
+            session.setAttribute("flashMessageWarning", "Complete the reCAPTCHA.");
+        }
 
         if(!errorFound) {
             user.setPrivileges("user");
@@ -73,7 +82,7 @@ public class Signup extends HttpServlet {
             }
             if(userAdded) {
                 user.setPassword(null);
-                HttpSession session = req.getSession(); // get an existing session if one exists
+                session = req.getSession(); // get an existing session if one exists
                 session.invalidate(); // remove any existing sessions
                 session = req.getSession(); // create a brand new session
                 session.setAttribute("activeUser", user);

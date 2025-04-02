@@ -42,7 +42,9 @@
     <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
     <script defer src="https://www.google.com/recaptcha/api.js"></script>
     <!-- Can add JavaScript files here -->
     <c:if test="${pageTitle eq 'Login'}"><script src="${appURL}/scripts/remember-me.js"></script></c:if>

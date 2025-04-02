@@ -25,6 +25,6 @@ public class AdminDeleteCoach extends HttpServlet {
         String id = req.getParameter("id");
         CoachDAO.delete(id);
 
-        resp.sendRedirect("WEB-INF/admin-coaches.jsp");
+        resp.sendRedirect(req.getContextPath() + "/coaches");
     }
 }
