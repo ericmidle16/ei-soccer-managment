@@ -58,7 +58,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <label for="specialty" class="form-label">specialty</label>
+      <label for="specialty" class="form-label">Specialty</label>
       <input type="text" class="form-control <c:choose><c:when test="${specialtyError == true}">is-invalid</c:when><c:when test="${specialtyError == false}">is-valid</c:when><c:otherwise></c:otherwise></c:choose>" id="specialty" name="specialty" value="${specialty}">
       <div class="<c:choose><c:when test="${specialtyError == true}">invalid-feedback</c:when><c:when test="${specialtyError == false}">valid-feedback</c:when><c:otherwise></c:otherwise></c:choose>">
         ${specialtyMessage}

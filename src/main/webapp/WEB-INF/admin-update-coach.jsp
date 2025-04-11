@@ -68,12 +68,12 @@
                     <label class="form-label" for="pronoun">Pronouns</label>
                     <select class="<c:if test="${not empty pronounError}">is-invalid</c:if> form-select js-choice z-index-9 bg-transparent"
                             aria-label=".form-select-sm" id="pronoun" name="pronoun">
-                        <option value="He/Him" ${Coach.pronoun == 'He/Him' ? 'selected' : ''}>He/Him</option>
-                        <option value="She/Her" ${Coach.pronoun == 'She/Her' ? 'selected' : ''}>She/Her</option>
-                        <option value="Other" ${Coach.pronoun == 'Other' ? 'selected' : ''}>Other</option>
+                        <option value="He/Him" ${coach.pronoun == 'He/Him' ? 'selected' : ''}>He/Him</option>
+                        <option value="She/Her" ${coach.pronoun == 'She/Her' ? 'selected' : ''}>She/Her</option>
+                        <option value="Other" ${coach.pronoun == 'Other' ? 'selected' : ''}>Other</option>
                     </select>
                     <c:if test="${not empty pronounError }">
-                        <div class="invalid-feedback">${pronounError}</div>
+                        <div class="invalid-feedback">${pronounMessage}</div>
                     </c:if>
                 </div>
                 <div class="col-md-4">

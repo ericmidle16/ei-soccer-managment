@@ -38,7 +38,7 @@ public class UserDAO {
                         statement.executeUpdate();
                     }
                     String subject = "Reset Password";
-                    String message = "<h2Reset Password</h2>";
+                    String message = "<h2>Reset Password</h2>";
                     message += "<p>Please use this link to securely reset your password. This link will remain active for 30 minutes.</p>";
                     String appUrl = "";
                     if(req.isSecure()) {

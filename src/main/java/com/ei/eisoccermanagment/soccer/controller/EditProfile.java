@@ -10,6 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @WebServlet("/edit-profile")
 public class EditProfile extends HttpServlet {
@@ -27,6 +30,7 @@ public class EditProfile extends HttpServlet {
             resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/"));
             return;
         }
+
         req.setAttribute("pageTitle", "Edit Profile");
         req.getRequestDispatcher("WEB-INF/edit-profile.jsp").forward(req, resp);
     }
@@ -40,6 +44,7 @@ public class EditProfile extends HttpServlet {
         String language = req.getParameter("language");
         String pronoun = req.getParameter("pronoun");
         String biography = req.getParameter("biography");
+        String timeZone = req.getParameter("timezones");
         req.setAttribute("email", email);
         req.setAttribute("phone", phone);
 
@@ -86,6 +91,15 @@ public class EditProfile extends HttpServlet {
         }
 
         try {
+            if(!timeZone.equals(user.getTimezone())) {
+                user.setTimezone(timeZone);
+            }
+        } catch(IllegalArgumentException e) {
+            errorFound = true;
+            req.setAttribute("timezoneError", e.getMessage());
+        }
+
+        try {
             if(!pronoun.equals(user.getPronoun())) {
                 user.setPronoun(pronoun);
             }
@@ -100,7 +114,7 @@ public class EditProfile extends HttpServlet {
             }
         } catch(IllegalArgumentException e) {
             errorFound = true;
-            req.setAttribute("pronounError", e.getMessage());
+            req.setAttribute("biographyError", e.getMessage());
         }
 
         if(!errorFound) {
@@ -118,5 +132,17 @@ public class EditProfile extends HttpServlet {
 
         req.setAttribute("pageTitle", "Edit Profile");
         req.getRequestDispatcher("WEB-INF/edit-profile.jsp").forward(req, resp);
+    }
+
+    // populate dropdown function
+    public List<String> populateUSTimezones() {
+        List<String> timezones = Arrays.asList(java.util.TimeZone.getAvailableIDs());
+        List<String> UStimezones = new ArrayList<>();
+        for(String timezone : timezones) {
+            if(timezone.startsWith("America/")){
+                UStimezones.add(timezone);
+            }
+        }
+        return UStimezones;
     }
 }
