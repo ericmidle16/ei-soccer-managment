@@ -23,7 +23,8 @@ public class AdminProducts extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        List<Product> products = ProductDAO.getAll();
+        // Need to fix this later for admin view with Category Id
+        List<Product> products = ProductDAO.getAllAdmin();
         req.setAttribute("products", products);
         req.setAttribute("pageTitle", "All Products");
         req.getRequestDispatcher("WEB-INF/admin-products.jsp").forward(req, resp);

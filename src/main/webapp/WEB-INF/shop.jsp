@@ -1,30 +1,37 @@
+
 <div class="container py-4">
-  <div class="row g-4">
-    <c:forEach items ="${products}" var="product">
-      <%-- Full width on mobile, half width on tablet, one-third width on laptop, one-forth width on desktop --%>
-      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-        <div class="card shadow-sm">
-          <div class="card-header">
-            <h4>${product.name}</h4>
-          </div>
-          <div class="card-body">
-            <p class="card-text">${product.description}</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-body-secondary"><fmt:formatNumber value="${product.price}" type="currency"/></small>
-              <form method="POST" action="${appURL}/add-to-cart" class="w-50">
-                <input type="hidden" name="prod_id" value="${product.productId}">
-                <div class="input-group">
-                  <div class="form-floating mb-3">
-                    <input type="number" min="0" class="form-control" id="qty" name="qty" value="1">
-                    <label for="qty">Qty</label>
-                  </div>
-                  <button type="submit" class="btn btn-outline-primary btn sm">Add to Cart</button>
+  <div class="col d-flex justify-content-between align-items-center">
+    <h2 class="mb-4">Get some stellar Merch!</h2>
+    <!-- Responsive toggler START -->
+    <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <!-- Responsive toggler END -->
+  </div>
+  <div class="row">
+    <!-- Main content START -->
+    <div class="col-lg-9">
+      <div class="row g-4">
+        <c:forEach items="${products}" var="product">
+          <%-- 12 means full-width, 6 means half-width, 4 means one-third width, 3 means one-forth width   --%>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="card shadow-sm">
+              <div class="card-header py-2">
+                <h4 class="my-0 text-center">${product.name}</h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text">${product.description}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="fw-bold"><fmt:formatNumber value="${product.price}" type="currency" /></small>
+                  <a href="${appURL}/add-to-cart?prod_id=${product.productId}" class="btn btn-secondary">Add to Cart</a>
                 </div>
-              </form>
+              </div>
             </div>
-          </div> <%-- Closing card-body --%>
-        </div> <%-- Closing card --%>
-      </div> <%-- Closing col --%>
-    </c:forEach>
-  </div><%-- Closing row --%>
-</div><%-- Closing container --%>
+          </div>
+        </c:forEach>
+      </div>
+    </div><!-- Main content END -->
+    <%@include file="shop-sidebar.jspf"%>
+  </div><!-- Row END -->
+</div><!-- Container END -->
+
