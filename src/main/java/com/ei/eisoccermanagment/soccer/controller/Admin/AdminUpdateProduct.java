@@ -85,15 +85,15 @@ public class AdminUpdateProduct extends HttpServlet {
             req.setAttribute("descriptionMessage", e.getMessage());
         }
 
-        try {
-            productNew.setColor(color);
-            req.setAttribute("colorError", false);
-            req.setAttribute("colorMessage", "Looks good!");
-        } catch (IllegalArgumentException e) {
-            validationError = true;
-            req.setAttribute("colorError", true);
-            req.setAttribute("colorMessage", e.getMessage());
-        }
+//        try {
+//            productNew.setColor(color);
+//            req.setAttribute("colorError", false);
+//            req.setAttribute("colorMessage", "Looks good!");
+//        } catch (IllegalArgumentException e) {
+//            validationError = true;
+//            req.setAttribute("colorError", true);
+//            req.setAttribute("colorMessage", e.getMessage());
+//        }
 
         req.setAttribute("product", productNew);
 

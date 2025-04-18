@@ -22,6 +22,20 @@
                 </div>
                 <!-- Category END -->
 
+                <!-- Color START -->
+                <div class="card card-body shadow p-4 mb-4">
+                    <!-- Title -->
+                    <h4 class="mb-2">Color</h4>
+                    <c:forEach var="color" items="${productColors}">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"  id="filter-${color.colorId}" name="colors" value="${color.colorId}" <c:if test="${fn:contains(colors, color.colorId)}">checked</c:if>>
+                            <label class="form-check-label" for="filter-${color.colorId}">${color.colorName} (${color.numColorProducts})</label>
+                        </div>
+                    </c:forEach>
+                </div>
+                <!-- Color END -->
+
                 <!-- Limit START -->
                 <div class="card card-body shadow p-4">
                     <!-- Title -->
@@ -30,10 +44,10 @@
                         <input type="radio" class="btn-check" id="show-5" autocomplete="off" name="limit" value="5" <c:if test="${limit eq 5}">checked</c:if> >
                         <label class="btn btn-outline-success" for="show-5">5</label>
 
-                        <input type="radio" class="btn-check" id="show-10" autocomplete="off" name="limit" value="10" <c:if test="${limit eq 10}">checked</c:if>>
+                        <input type="radio" class="btn-check" id="show-10" autocomplete="off" name="limit" value="10" <c:if test="${limit eq 10}">checked</c:if> >
                         <label class="btn btn-outline-success" for="show-10">10</label>
 
-                        <input type="radio" class="btn-check" id="show-20" autocomplete="off" name="limit" value="20" <c:if test="${limit eq 20}">checked</c:if>>
+                        <input type="radio" class="btn-check" id="show-20" autocomplete="off" name="limit" value="20" <c:if test="${limit eq 20}">checked</c:if> >
                         <label class="btn btn-outline-success" for="show-20">20</label>
                     </div>
                 </div><!-- Limit END -->

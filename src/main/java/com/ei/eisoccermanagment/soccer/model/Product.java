@@ -5,22 +5,24 @@ public class Product {
     private String name;
     private double price;
     private String description;
-    private String color;
     private int categoryId;
     private String categoryName;
+    private int colorId;
+    private String colorName;
 
 
     public Product() {
     }
 
-    public Product(int productId, String name, double price, String description, String color, int categoryId, String categoryName) {
+    public Product(int productId, String name, double price, String description, int categoryId, String categoryName, int colorId, String colorName) {
         this.productId = productId;
         this.name = name;
         this.price = price;
         this.description = description;
-        this.color = color;
         this.categoryId = categoryId;
         this.categoryName = categoryName;
+        this.colorId = colorId;
+        this.colorName = colorName;
     }
 
     public int getProductId() {
@@ -55,14 +57,6 @@ public class Product {
         this.description = description;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public int getCategoryId() {
         return categoryId;
     }
@@ -79,6 +73,22 @@ public class Product {
         this.categoryName = categoryName;
     }
 
+    public int getColorId() {
+        return colorId;
+    }
+
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
+
+    public String getColorName() {
+        return colorName;
+    }
+
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -86,7 +96,10 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", color='" + color + '\'' +
+                ", categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", colorId=" + colorId +
+                ", colorName='" + colorName + '\'' +
                 '}';
     }
 }

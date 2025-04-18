@@ -66,15 +66,14 @@
                 <div class="col-md-6">
                     <!-- Pronoun Preference -->
                     <label class="form-label" for="pronoun">Pronouns</label>
-                    <select class="<c:if test="${not empty pronounError}">is-invalid</c:if> form-select js-choice z-index-9 bg-transparent"
-                            aria-label=".form-select-sm" id="pronoun" name="pronoun">
-                        <option value="He/Him" ${coach.pronoun == 'He/Him' ? 'selected' : ''}>He/Him</option>
-                        <option value="She/Her" ${coach.pronoun == 'She/Her' ? 'selected' : ''}>She/Her</option>
-                        <option value="Other" ${coach.pronoun == 'Other' ? 'selected' : ''}>Other</option>
+                    <select class="<c:choose><c:when test="${pronounError == true}">is-invalid</c:when><c:when test="${pronounError == false}">is-valid</c:when><c:otherwise></c:otherwise></c:choose> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="pronoun" name="pronoun">
+                        <option value="He/Him" <c:if test="${coach.pronoun == 'He/Him'}">selected</c:if>>He/Him</option>
+                        <option value="She/Her" <c:if test="${coach.pronoun == 'She/Her'}">selected</c:if>>She/Her</option>
+                        <option value="Other" <c:if test="${coach.pronoun == 'Other'}">selected</c:if>>Other</option>
                     </select>
-                    <c:if test="${not empty pronounError }">
-                        <div class="invalid-feedback">${pronounMessage}</div>
-                    </c:if>
+                    <div class="<c:choose><c:when test="${pronounError == true}">invalid-feedback</c:when><c:when test="${pronounError == false}">valid-feedback</c:when><c:otherwise></c:otherwise></c:choose>">
+                            ${pronounMessage}
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <label for="biography" class="form-label">Biography</label>

@@ -11,29 +11,32 @@ import static com.ei.eisoccermanagment.shared.MySQL_Connect.getConnection;
 
 public class ProductDAO {
     public static void main(String[] args) {
-        //getAll(5, 0, "1,2,3").forEach(System.out::println);
-        getAllCategories().forEach(System.out::println);
+        //getAll(5, 0, "1,2,3", "1").forEach(System.out::println);
+        //getAllCategories().forEach(System.out::println);
+        getAllColors().forEach(System.out::println);
     }
 
-    public static List<Product> getAll(int limit, int offset, String categories) {
+    public static List<Product> getAll(int limit, int offset, String categories, String colors) {
         List<Product> list = new ArrayList<>();
         try (Connection connection = getConnection()) {
-            CallableStatement cstmt = connection.prepareCall("{call sp_get_all_products(?,?,?)}");
+            CallableStatement cstmt = connection.prepareCall("{call sp_get_all_products(?,?,?,?)}");
             // If you are selecting items you will get a result set with executeQuery
             // Every other is .executeUpdate
             cstmt.setInt(1, limit);
             cstmt.setInt(2, offset);
             cstmt.setString(3, categories);
+            cstmt.setString(4, colors);
             ResultSet rs = cstmt.executeQuery();
             while(rs.next()) {
                 int productId = rs.getInt("product_id");
                 String name = rs.getString("name");
                 double price = rs.getDouble("price");
                 String description = rs.getString("description");
-                String color = rs.getString("color");
                 int categoryId = rs.getInt("category_id");
                 String categoryName = rs.getString("category_name");
-                Product product = new Product(productId, name, price, description, color, categoryId, categoryName);
+                int colorId = rs.getInt("color_id");
+                String colorName = rs.getString("color_name");
+                Product product = new Product(productId, name, price, description, categoryId, categoryName, colorId, colorName);
                 list.add(product);
             }
         } catch (SQLException e) {
@@ -54,10 +57,11 @@ public class ProductDAO {
                 String name = rs.getString("name");
                 double price = rs.getDouble("price");
                 String description = rs.getString("description");
-                String color = rs.getString("color");
                 int categoryId = rs.getInt("category_id");
                 String categoryName = rs.getString("category_name");
-                Product product = new Product(productId, name, price, description, color, categoryId, categoryName);
+                int colorId = rs.getInt("color_id");
+                String colorName = rs.getString("color_name");
+                Product product = new Product(productId, name, price, description, categoryId, categoryName, colorId, colorName);
                 list.add(product);
             }
         } catch (SQLException e) {
@@ -76,10 +80,11 @@ public class ProductDAO {
                 String name = rs.getString("name");
                 double price = rs.getDouble("price");
                 String description = rs.getString("description");
-                String color = rs.getString("color");
                 int categoryId = rs.getInt("category_id");
                 String categoryName = rs.getString("category_name");
-                product = new Product(productId, name, price, description, color, categoryId, categoryName);
+                int colorId = rs.getInt("color_id");
+                String colorName = rs.getString("color_name");
+                product = new Product(productId, name, price, description, categoryId, categoryName, colorId, colorName);
             }
         } catch(SQLException e) {
             throw new RuntimeException(e);
@@ -94,11 +99,9 @@ public class ProductDAO {
             statement.setString(2, productOriginal.getName());
             statement.setDouble(3, productOriginal.getPrice());
             statement.setString(4, productOriginal.getDescription());
-            statement.setString(5, productOriginal.getColor());
             statement.setString(6, productNew.getName());
             statement.setDouble(7, productNew.getPrice());
             statement.setString(8, productNew.getDescription());
-            statement.setString(9, productNew.getColor());
             int rowsAffected = statement.executeUpdate();
             return rowsAffected == 1;
         } catch(SQLException e) {
@@ -113,7 +116,6 @@ public class ProductDAO {
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
             statement.setString(3, product.getDescription());
-            statement.setString(4, product.getColor());
             int rowsAffected = statement.executeUpdate();
             return rowsAffected == 1;
         } catch(SQLException e) {
@@ -149,5 +151,23 @@ public class ProductDAO {
             System.out.println(e.getMessage());
         }
         return categories;
+    }
+
+    public static List<ProductColor> getAllColors() {
+        List<ProductColor> colors = new ArrayList<>();
+        try (Connection connection = getConnection();
+             CallableStatement statement = connection.prepareCall("{CALL sp_get_product_colors()}");
+             ResultSet resultSet = statement.executeQuery();
+        ) {
+            while (resultSet.next()) {
+                int colorId = resultSet.getInt("id");
+                String colorName = resultSet.getString("name");
+                int numColorProducts = resultSet.getInt("num_products");
+                colors.add(new ProductColor(colorId, colorName, numColorProducts));
+            }
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return colors;
     }
 }

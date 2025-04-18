@@ -75,15 +75,15 @@ public class AdminAddProduct extends HttpServlet {
             req.setAttribute("descriptionMessage", e.getMessage());
         }
 
-        try {
-            product.setColor(color);
-            req.setAttribute("colorError", false);
-            req.setAttribute("colorMessage", "Looks good!");
-        } catch (IllegalArgumentException e) {
-            validationError = true;
-            req.setAttribute("colorError", true);
-            req.setAttribute("colorMessage", e.getMessage());
-        }
+//        try {
+//            product.setColor(color);
+//            req.setAttribute("colorError", false);
+//            req.setAttribute("colorMessage", "Looks good!");
+//        } catch (IllegalArgumentException e) {
+//            validationError = true;
+//            req.setAttribute("colorError", true);
+//            req.setAttribute("colorMessage", e.getMessage());
+//        }
 
         if(!validationError) {
             boolean productAdded = ProductDAO.add(product);

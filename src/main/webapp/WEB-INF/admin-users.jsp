@@ -36,10 +36,10 @@
                 <a href="edit-user?user_id=${user.userId}" class="btn btn-sm btn-outline-primary">Edit</a>
                 <a href="delete-user?user_id=${user.userId}" class="btn btn-sm btn-outline-danger">Delete</a>
               </td>
-              <td>${user.firstName}</td>
-              <td>${user.lastName}</td>
-              <td>${user.email}</td>
-              <td>${user.phone}</td>
+              <td>${fn:escapeXml(user.firstName)}</td>
+              <td>${fn:escapeXml(user.lastName)}</td>
+              <td>${fn:escapeXml(user.email)}</td>
+              <td>${fn:escapeXml(user.email)}</td>
               <td>${user.language}</td>
               <td>${user.status}</td>
               <td>${user.privileges}</td>

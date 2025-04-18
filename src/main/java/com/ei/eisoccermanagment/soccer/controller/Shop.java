@@ -2,6 +2,7 @@ package com.ei.eisoccermanagment.soccer.controller;
 
 import com.ei.eisoccermanagment.soccer.model.Product;
 import com.ei.eisoccermanagment.soccer.model.ProductCategory;
+import com.ei.eisoccermanagment.soccer.model.ProductColor;
 import com.ei.eisoccermanagment.soccer.model.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,13 +30,21 @@ public class Shop extends HttpServlet {
         if(categoriesArr != null && categoriesArr.length > 0) {
             categories = String.join(",", categoriesArr);
         }
+        String[] colorsArr = req.getParameterValues("colors");
+        String colors = "";
+        if(colorsArr != null && colorsArr.length > 0) {
+            colors = String.join(",", colorsArr);
+        }
+        req.setAttribute("colors", colors);
         req.setAttribute("categories", categories);
         req.setAttribute("limit", limit);
-        List<Product> products = ProductDAO.getAll(limit, offset, categories);
+        List<Product> products = ProductDAO.getAll(limit, offset, categories, colors);
         // Attribute can be an OBJECT not a String
         req.setAttribute("products", products);
         List<ProductCategory> productCategories = ProductDAO.getAllCategories();
         req.setAttribute("productCategories", productCategories);
+        List<ProductColor> productColors = ProductDAO.getAllColors();
+        req.setAttribute("productColors", productColors);
         req.getRequestDispatcher("WEB-INF/shop.jsp").forward(req, resp);
     }
 }

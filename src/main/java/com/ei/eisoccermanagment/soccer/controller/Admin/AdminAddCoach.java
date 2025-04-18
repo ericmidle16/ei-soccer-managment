@@ -84,7 +84,7 @@ public class AdminAddCoach extends HttpServlet {
         }
 
         try {
-            coach.setAge(Integer.parseInt(age));
+            coach.setAge(age);
             req.setAttribute("ageError", false);
             req.setAttribute("ageMessage", "Looks good!");
         } catch (IllegalArgumentException e) {

@@ -40,6 +40,9 @@ public class Coach implements Comparable<Coach> {
     }
 
     public void setFirstName(String firstName) {
+        if(firstName == null || firstName.isEmpty()){
+            throw new IllegalArgumentException("First name cannot be empty");
+        }
         this.firstName = firstName;
     }
 
@@ -48,6 +51,9 @@ public class Coach implements Comparable<Coach> {
     }
 
     public void setLastName(String lastName) {
+        if(lastName == null || lastName.isEmpty()){
+            throw new IllegalArgumentException("Last name cannot be empty");
+        }
         this.lastName = lastName;
     }
 
@@ -70,12 +76,29 @@ public class Coach implements Comparable<Coach> {
         this.age = age;
     }
 
+    public void setAge(String age) {
+        try{
+            int ageTemp = Integer.parseInt(age);
+            if(ageTemp <= 0){
+               throw new IllegalArgumentException("Age must be a positive integer");
+            }
+            this.age = ageTemp;
+        } catch(IllegalArgumentException e){
+            throw new IllegalArgumentException("Age must be a positive integer");
+        }
+    }
+
     public String getPronoun() {
         return pronoun;
     }
 
     public void setPronoun(String pronoun) {
-        this.pronoun = pronoun;
+        if(pronoun.equals("He/Him") || pronoun.equals("She/Her") || pronoun.equals("Other")){
+            this.pronoun = pronoun;
+        }
+        else {
+            throw new IllegalArgumentException("Invalid pronoun");
+        }
     }
 
     public String getBiography() {
@@ -83,6 +106,9 @@ public class Coach implements Comparable<Coach> {
     }
 
     public void setBiography(String biography) {
+        if(biography == null || biography.isEmpty()){
+            throw new IllegalArgumentException("Biography cannot be empty");
+        }
         this.biography = biography;
     }
 
@@ -91,6 +117,9 @@ public class Coach implements Comparable<Coach> {
     }
 
     public void setSpecialty(String specialty) {
+        if(specialty == null || specialty.isEmpty()){
+            throw new IllegalArgumentException("Specialty cannot be empty");
+        }
         this.specialty = specialty;
     }
 
