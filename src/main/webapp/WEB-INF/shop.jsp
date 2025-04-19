@@ -11,6 +11,10 @@
   <div class="row">
     <!-- Main content START -->
     <div class="col-lg-9">
+      <div class="col d-flex justify-content-between align-items-center">
+        <p class="lead">Showing products ${firstProductShown}-${lastProductShown} of ${totalProducts}</p>
+        <%@include file="/WEB-INF/pagination.jspf"%>
+      </div>
       <div class="row g-4">
         <c:forEach items="${products}" var="product">
           <%-- 12 means full-width, 6 means half-width, 4 means one-third width, 3 means one-forth width   --%>
@@ -30,6 +34,9 @@
             </div>
           </div>
         </c:forEach>
+      </div>  <!-- End PRODUCT row -->
+      <div class="col d-flex justify-content-end align-items-center mt-4">
+        <%@include file="/WEB-INF/pagination.jspf"%>
       </div>
     </div><!-- Main content END -->
     <%@include file="shop-sidebar.jspf"%>

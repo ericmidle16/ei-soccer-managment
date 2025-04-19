@@ -13,7 +13,8 @@ public class ProductDAO {
     public static void main(String[] args) {
         //getAll(5, 0, "1,2,3", "1").forEach(System.out::println);
         //getAllCategories().forEach(System.out::println);
-        getAllColors().forEach(System.out::println);
+        //getAllColors().forEach(System.out::println);
+        //System.out.println(getProductCount("","1"));
     }
 
     public static List<Product> getAll(int limit, int offset, String categories, String colors) {
@@ -169,5 +170,22 @@ public class ProductDAO {
             System.out.println(e.getMessage());
         }
         return colors;
+    }
+
+    public static int getProductCount(String categories, String colors) {
+        try(Connection connection = getConnection();
+            CallableStatement statement = connection.prepareCall("{CALL sp_get_total_products(?,?)}");
+        ) {
+            statement.setString(1, categories);
+            statement.setString(2, colors);
+            try(ResultSet resultSet = statement.executeQuery();) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("total_products");
+                }
+            }
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
     }
 }
