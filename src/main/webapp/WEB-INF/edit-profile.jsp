@@ -59,8 +59,8 @@
                   </select>
                   <c:if test="${not empty languageError }"><div class="invalid-feedback">${languageError}</div></c:if>
                 </div>
-                <!-- Select Timezone -->
-                <div class="col-md-6" data-bs-theme="dark">
+                <!-- Select option -->
+                <div class="col-md-6" >
                   <label class="form-label" for="timezone">Timezone</label>
                   <select class="<c:if test='${not empty timezoneError}'>is-invalid</c:if> form-select js-choice z-index-9" aria-label=".form-select-sm" id="timezone" name="timezone">
                     <c:forEach var="tz" items="${timezones}">

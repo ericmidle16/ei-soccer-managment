@@ -31,6 +31,9 @@ public class EditProfile extends HttpServlet {
             return;
         }
 
+        List<String> timezones = populateUSTimezones();
+        req.setAttribute("timezones", timezones);
+
         req.setAttribute("pageTitle", "Edit Profile");
         req.getRequestDispatcher("WEB-INF/edit-profile.jsp").forward(req, resp);
     }
@@ -44,7 +47,7 @@ public class EditProfile extends HttpServlet {
         String language = req.getParameter("language");
         String pronoun = req.getParameter("pronoun");
         String biography = req.getParameter("biography");
-        String timeZone = req.getParameter("timezones");
+        String timezone = req.getParameter("timezone");
         req.setAttribute("email", email);
         req.setAttribute("phone", phone);
 
@@ -91,8 +94,8 @@ public class EditProfile extends HttpServlet {
         }
 
         try {
-            if(!timeZone.equals(user.getTimezone())) {
-                user.setTimezone(timeZone);
+            if(!timezone.equals(user.getTimezone())) {
+                user.setTimezone(timezone);
             }
         } catch(IllegalArgumentException e) {
             errorFound = true;
@@ -130,19 +133,24 @@ public class EditProfile extends HttpServlet {
             }
         }
 
+        List<String> timezones = populateUSTimezones();
+        req.setAttribute("timezones", timezones);
+
         req.setAttribute("pageTitle", "Edit Profile");
         req.getRequestDispatcher("WEB-INF/edit-profile.jsp").forward(req, resp);
     }
 
     // populate dropdown function
     public List<String> populateUSTimezones() {
-        List<String> timezones = Arrays.asList(java.util.TimeZone.getAvailableIDs());
-        List<String> UStimezones = new ArrayList<>();
-        for(String timezone : timezones) {
-            if(timezone.startsWith("America/")){
-                UStimezones.add(timezone);
-            }
-        }
-        return UStimezones;
+        return Arrays.asList(
+                "America/New_York",
+                "America/Chicago",
+                "America/Denver",
+                "America/Phoenix",
+                "America/Los_Angeles",
+                "America/Anchorage",
+                "America/Adak",
+                "Pacific/Honolulu"
+        );
     }
 }
