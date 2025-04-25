@@ -47,14 +47,15 @@ public class DeleteAccount extends HttpServlet {
         }
 
         if(!errorFound) {
-            boolean deleted = UserDAO.delete(user);
-            if(deleted) {
-                session.invalidate();
-                session = req.getSession();
-                session.setAttribute("flashMessageWarning", "Your account has been deleted.");
-                resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/"));
-                return;
-            }
+            req.setAttribute("showModal", true);
+//            boolean deleted = UserDAO.delete(user);
+//            if(deleted) {
+//                session.invalidate();
+//                session = req.getSession();
+//                session.setAttribute("flashMessageWarning", "Your account has been deleted.");
+//                resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/"));
+//                return;
+//            }
         }
 
         req.setAttribute("pageTitle", "Delete Account");
