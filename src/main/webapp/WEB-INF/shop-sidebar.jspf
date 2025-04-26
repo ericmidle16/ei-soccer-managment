@@ -16,7 +16,7 @@
                     <c:forEach var="category" items="${productCategories}">
                     <!-- Checkbox -->
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox"  id="filter-${category.id}" name="categories" value="${category.id}" <c:if test="${fn:contains(categories, category.id)}">checked</c:if>>
+                        <input class="form-check-input" type="checkbox"  id="filter-${category.id}" name="categories" value="${category.id}" <c:if test="${cfn:contains(categoriesArr, category.id)}">checked</c:if>>
                         <label class="form-check-label" for="filter-${category.id}">${category.name} (${category.numProducts})</label>
                     </div>
                     </c:forEach>
@@ -30,7 +30,7 @@
                     <c:forEach var="color" items="${productColors}">
                         <!-- Checkbox -->
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox"  id="filter-${color.colorId}" name="colors" value="${color.colorId}" <c:if test="${fn:contains(colors, color.colorId)}">checked</c:if>>
+                            <input class="form-check-input" type="checkbox"  id="filter-${color.colorId}" name="colors" value="${color.colorId}" <c:if test="${cfn:contains(colorsArr, color.colorId)}">checked</c:if>>
                             <label class="form-check-label" for="filter-${color.colorId}">${color.colorName} (${color.numColorProducts})</label>
                         </div>
                     </c:forEach>

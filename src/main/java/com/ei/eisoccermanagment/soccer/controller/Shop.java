@@ -33,7 +33,7 @@ public class Shop extends HttpServlet {
         if(categoriesArr != null && categoriesArr.length > 0) {
             categories = String.join(",", categoriesArr);
         }
-        req.setAttribute("categories", categories);
+        //req.setAttribute("categories", categories);
         req.setAttribute("categoriesArr", categoriesArr);
 
         // Get colors
@@ -42,7 +42,7 @@ public class Shop extends HttpServlet {
         if(colorsArr != null && colorsArr.length > 0) {
             colors = String.join(",", colorsArr);
         }
-        req.setAttribute("colors", colors);
+        //req.setAttribute("colors", colors);
         req.setAttribute("colorsArr", colorsArr);
 
         // Get the total products
