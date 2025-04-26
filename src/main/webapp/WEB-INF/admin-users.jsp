@@ -43,7 +43,7 @@
               <td>${user.language}</td>
               <td>${user.status}</td>
               <td>${user.privileges}</td>
-              <td>${user.createdAt}</td>
+              <td><fmt:formatDate value="${user.createdAtDate}" dateStyle="long" /></td>
               <td>${user.timezone}</td>
               <td>${user.pronoun}</td>
               <td>${user.biography}</td>
