@@ -34,6 +34,7 @@ public class Shop extends HttpServlet {
             categories = String.join(",", categoriesArr);
         }
         req.setAttribute("categories", categories);
+        req.setAttribute("categoriesArr", categoriesArr);
 
         // Get colors
         String[] colorsArr = req.getParameterValues("colors");
@@ -42,6 +43,7 @@ public class Shop extends HttpServlet {
             colors = String.join(",", colorsArr);
         }
         req.setAttribute("colors", colors);
+        req.setAttribute("colorsArr", colorsArr);
 
         // Get the total products
         int totalProducts = ProductDAO.getProductCount(categories, colors);
