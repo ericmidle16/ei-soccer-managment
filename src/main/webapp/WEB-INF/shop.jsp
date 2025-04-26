@@ -25,6 +25,7 @@
               </div>
               <div class="card-body">
                 <p class="badge rounded-pill text-bg-secondary"><a class="text-white" href="${appURL}/shop?categories=${product.categoryId}">${product.categoryName}</a></p>
+                <p class="badge rounded-pill text-bg-secondary"><a class="text-white" href="${appURL}/shop?colors=${product.colorId}">${product.colorName}</a></p>
                 <p class="card-text">${product.description}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <small class="fw-bold"><fmt:formatNumber value="${product.price}" type="currency" /></small>

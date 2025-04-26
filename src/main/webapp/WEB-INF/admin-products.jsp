@@ -19,8 +19,9 @@
               <th scope="col"></th>
               <th scope="col">Name</th>
               <th scope="col">Price</th>
-              <th scope="col">Description</th>
+              <th scope="col">Category</th>
               <th scope="col">Color</th>
+              <th scope="col">Description</th>
             </tr>
             </thead>
             <tbody>
@@ -34,8 +35,9 @@
               </td>
               <td>${product.name}</td>
               <td><fmt:formatNumber value="${product.price}" type="currency" /></td>
+              <td>${product.categoryName}</td>
+              <td>${product.colorName}</td>
               <td>${product.description}</td>
-              <td>${product.color}</td>
               </c:forEach>
             </tbody>
           </table>

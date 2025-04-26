@@ -25,7 +25,7 @@ public class AdminUpdateProduct extends HttpServlet {
         }
         String id = req.getParameter("id");
         req.setAttribute("id", id);
-        Product product = ProductDAO.get(Integer.parseInt(id));
+        Product product = ProductDAO.getAdmin(Integer.parseInt(id));
         req.setAttribute("product", product);
         req.getRequestDispatcher("WEB-INF/admin-update-product.jsp").forward(req, resp);
     }
@@ -45,11 +45,12 @@ public class AdminUpdateProduct extends HttpServlet {
         String price = req.getParameter("price");
         String description = req.getParameter("description");
         String color = req.getParameter("color");
+        String category = req.getParameter("category");
 
         boolean validationError = false;
 
-        Product productOriginal = ProductDAO.get(Integer.parseInt(id)); // Get the coach from the data in the hidden field
-        Product productNew = ProductDAO.get(Integer.parseInt(id));
+        Product productOriginal = ProductDAO.getAdmin(Integer.parseInt(id)); // Get the coach from the data in the hidden field
+        Product productNew = ProductDAO.getAdmin(Integer.parseInt(id));
         if (productNew == null) {
             req.setAttribute("productUpdated", false);
             req.setAttribute("productUpdatedMessage", "Failed to update a product!");
@@ -62,11 +63,11 @@ public class AdminUpdateProduct extends HttpServlet {
         } catch(IllegalArgumentException e) {
             validationError = true;
             req.setAttribute("nameError", true);
-            req.setAttribute("nameeMessage", e.getMessage());
+            req.setAttribute("nameMessage", e.getMessage());
         }
 
         try {
-            productNew.setPrice(Double.parseDouble(price));
+            productNew.setPrice(price);
             req.setAttribute("priceError", false);
             req.setAttribute("priceMessage", "Looks good!");
         } catch(IllegalArgumentException e) {
@@ -85,15 +86,25 @@ public class AdminUpdateProduct extends HttpServlet {
             req.setAttribute("descriptionMessage", e.getMessage());
         }
 
-//        try {
-//            productNew.setColor(color);
-//            req.setAttribute("colorError", false);
-//            req.setAttribute("colorMessage", "Looks good!");
-//        } catch (IllegalArgumentException e) {
-//            validationError = true;
-//            req.setAttribute("colorError", true);
-//            req.setAttribute("colorMessage", e.getMessage());
-//        }
+        try {
+            productNew.setCategoryId(category);
+            req.setAttribute("categoryError", false);
+            req.setAttribute("categoryMessage", "Looks good!");
+        } catch (IllegalArgumentException e) {
+            validationError = true;
+            req.setAttribute("categoryError", true);
+            req.setAttribute("categoryMessage", e.getMessage());
+        }
+
+        try {
+            productNew.setColorId(color);
+            req.setAttribute("colorError", false);
+            req.setAttribute("colorMessage", "Looks good!");
+        } catch (IllegalArgumentException e) {
+            validationError = true;
+            req.setAttribute("colorError", true);
+            req.setAttribute("colorMessage", e.getMessage());
+        }
 
         req.setAttribute("product", productNew);
 

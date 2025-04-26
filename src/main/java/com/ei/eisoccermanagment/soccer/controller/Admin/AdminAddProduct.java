@@ -36,9 +36,11 @@ public class AdminAddProduct extends HttpServlet {
         String price = req.getParameter("price");
         String description = req.getParameter("description");
         String color = req.getParameter("color");
+        String category = req.getParameter("category");
         req.setAttribute("name", name);
         req.setAttribute("price", price);
         req.setAttribute("description", description);
+        req.setAttribute("category", category);
         req.setAttribute("color", color);
 
         Product product = new Product();
@@ -52,11 +54,11 @@ public class AdminAddProduct extends HttpServlet {
         } catch(IllegalArgumentException e) {
             validationError = true;
             req.setAttribute("nameError", true);
-            req.setAttribute("nameeMessage", e.getMessage());
+            req.setAttribute("nameMessage", e.getMessage());
         }
 
         try {
-            product.setPrice(Double.parseDouble(price));
+            product.setPrice(price);
             req.setAttribute("priceError", false);
             req.setAttribute("priceMessage", "Looks good!");
         } catch(IllegalArgumentException e) {
@@ -75,15 +77,25 @@ public class AdminAddProduct extends HttpServlet {
             req.setAttribute("descriptionMessage", e.getMessage());
         }
 
-//        try {
-//            product.setColor(color);
-//            req.setAttribute("colorError", false);
-//            req.setAttribute("colorMessage", "Looks good!");
-//        } catch (IllegalArgumentException e) {
-//            validationError = true;
-//            req.setAttribute("colorError", true);
-//            req.setAttribute("colorMessage", e.getMessage());
-//        }
+        try {
+            product.setCategoryId(category);
+            req.setAttribute("categoryError", false);
+            req.setAttribute("categoryMessage", "Looks good!");
+        } catch (IllegalArgumentException e) {
+            validationError = true;
+            req.setAttribute("categoryError", true);
+            req.setAttribute("categoryMessage", e.getMessage());
+        }
+
+        try {
+            product.setColorId(color);
+            req.setAttribute("colorError", false);
+            req.setAttribute("colorMessage", "Looks good!");
+        } catch (IllegalArgumentException e) {
+            validationError = true;
+            req.setAttribute("colorError", true);
+            req.setAttribute("colorMessage", e.getMessage());
+        }
 
         if(!validationError) {
             boolean productAdded = ProductDAO.add(product);

@@ -93,16 +93,40 @@ public class ProductDAO {
         return product;
     }
 
+    public static Product getAdmin(int productId) {
+        Product product = null;
+        try(Connection connection = getConnection()) {
+            CallableStatement cstmt = connection.prepareCall("{call sp_get_product_admin(?)}");
+            cstmt.setInt(1, productId);
+            ResultSet rs = cstmt.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("name");
+                double price = rs.getDouble("price");
+                String description = rs.getString("description");
+                int categoryId = rs.getInt("category_id");
+                int colorId = rs.getInt("color_id");
+                product = new Product(productId, name, price, description, categoryId, colorId);
+            }
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return product;
+    }
+
     public static boolean update(Product productOriginal, Product productNew) {
         try(Connection connection = getConnection()) {
-            CallableStatement statement = connection.prepareCall("{CALL sp_update_product(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+            CallableStatement statement = connection.prepareCall("{CALL sp_update_product(?,?,?,?,?,?,?,?,?,?,?)}");
             statement.setInt(1, productOriginal.getProductId());
             statement.setString(2, productOriginal.getName());
             statement.setDouble(3, productOriginal.getPrice());
             statement.setString(4, productOriginal.getDescription());
-            statement.setString(6, productNew.getName());
-            statement.setDouble(7, productNew.getPrice());
-            statement.setString(8, productNew.getDescription());
+            statement.setInt(5, productOriginal.getCategoryId());
+            statement.setInt(6, productOriginal.getColorId());
+            statement.setString(7, productNew.getName());
+            statement.setDouble(8, productNew.getPrice());
+            statement.setString(9, productNew.getDescription());
+            statement.setInt(10, productNew.getCategoryId());
+            statement.setInt(11, productNew.getColorId());
             int rowsAffected = statement.executeUpdate();
             return rowsAffected == 1;
         } catch(SQLException e) {
@@ -113,10 +137,12 @@ public class ProductDAO {
 
     public static boolean add(Product product) {
         try(Connection connection = getConnection()) {
-            CallableStatement statement = connection.prepareCall("{CALL sp_add_product(?, ?, ?, ?)}");
+            CallableStatement statement = connection.prepareCall("{CALL sp_add_product(?, ?, ?, ?, ?)}");
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
             statement.setString(3, product.getDescription());
+            statement.setInt(4, product.getCategoryId());
+            statement.setInt(5, product.getColorId());
             int rowsAffected = statement.executeUpdate();
             return rowsAffected == 1;
         } catch(SQLException e) {

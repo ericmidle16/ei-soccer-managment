@@ -17,13 +17,13 @@
       </div>
     </div>
     <%-- col-md-8 means the column will be 2/3 of the row's width  --%>
-    <div class="col-md-8">
-      <label for="price" class="form-label">Price</label>
-      <input type="text" class="form-control <c:choose><c:when test="${priceError == true}">is-invalid</c:when><c:when test="${priceError == false}">is-valid</c:when><c:otherwise></c:otherwise></c:choose>" id="price" name="price" value="${price}">
-      <div class="<c:choose><c:when test="${priceError == true}">invalid-feedback</c:when><c:when test="${priceError == false}">valid-feedback</c:when><c:otherwise></c:otherwise></c:choose>">
-        ${priceMessage}
+      <div class="col-md-4">
+        <label for="price" class="form-label">Price</label>
+        <input type="text" class="form-control <c:choose><c:when test="${priceError == true}">is-invalid</c:when><c:when test="${priceError == false}">is-valid</c:when><c:otherwise></c:otherwise></c:choose>" id="price" name="price" value="${price}">
+        <div class="<c:choose><c:when test="${priceError == true}">invalid-feedback</c:when><c:when test="${priceError == false}">valid-feedback</c:when><c:otherwise></c:otherwise></c:choose>">
+          ${priceMessage}
+        </div>
       </div>
-    </div>
     <%-- col-md-3 means the column will be 1/4 of the row's width  --%>
     <div class="col-md-3">
       <label for="description" class="form-label">Description</label>
@@ -32,14 +32,37 @@
         ${descriptionMessage}
       </div>
     </div>
-    <%-- col-md-9 means the column will be 3/4 of the row's width  --%>
-    <div class="col-md-9">
-      <label for="color" class="form-label">Color</label>
-      <input type="text" class="form-control <c:choose><c:when test="${colorError == true}">is-invalid</c:when><c:when test="${colorError == false}">is-valid</c:when><c:otherwise></c:otherwise></c:choose>" id="color" name="color" value="${color}">
-      <div class="<c:choose><c:when test="${colorError == true}">invalid-feedback</c:when><c:when test="${colorError == false}">valid-feedback</c:when><c:otherwise></c:otherwise></c:choose>">
-        ${colorMessage}
+      <div class="col-md-6">
+        <!-- Pronoun Preference -->
+        <label class="form-label" for="category">Category</label>
+        <select class="<c:choose><c:when test="${categoryError == true}">is-invalid</c:when><c:when test="${categoryError == false}">is-valid</c:when><c:otherwise></c:otherwise></c:choose> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="category" name="category">
+          <option value="1" <c:if test="${categoryId == '1'}">selected</c:if>>Ball</option>
+          <option value="2" <c:if test="${categoryId == '2'}">selected</c:if>>T-shirt</option>
+          <option value="3" <c:if test="${categoryId == '3'}">selected</c:if>>Water Bottle</option>
+        </select>
+        <div class="<c:choose><c:when test="${categoryError == true}">invalid-feedback</c:when><c:when test="${categoryError == false}">valid-feedback</c:when><c:otherwise></c:otherwise></c:choose>">
+          ${categoryMessage}
+        </div>
       </div>
-    </div>
+    <%-- col-md-9 means the column will be 3/4 of the row's width  --%>
+      <div class="col-md-6">
+        <!-- Pronoun Preference -->
+        <label class="form-label" for="color">Color</label>
+        <select class="<c:choose><c:when test="${colorError == true}">is-invalid</c:when><c:when test="${colorError == false}">is-valid</c:when><c:otherwise></c:otherwise></c:choose> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="color" name="color">
+          <option value="1" <c:if test="${colorId == '1'}">selected</c:if>>Red</option>
+          <option value="2" <c:if test="${colorId == '2'}">selected</c:if>>Blue</option>
+          <option value="3" <c:if test="${colorId == '3'}">selected</c:if>>Green</option>
+          <option value="4" <c:if test="${colorId == '4'}">selected</c:if>>Black</option>
+          <option value="5" <c:if test="${colorId == '5'}">selected</c:if>>White</option>
+          <option value="6" <c:if test="${colorId == '6'}">selected</c:if>>Orange</option>
+          <option value="7" <c:if test="${colorId == '7'}">selected</c:if>>Gray</option>
+          <option value="8" <c:if test="${colorId == '8'}">selected</c:if>>Yellow</option>
+          <option value="9" <c:if test="${colorId == '9'}">selected</c:if>>Purple</option>
+        </select>
+        <div class="<c:choose><c:when test="${colorError == true}">invalid-feedback</c:when><c:when test="${colorError == false}">valid-feedback</c:when><c:otherwise></c:otherwise></c:choose>">
+          ${colorMessage}
+        </div>
+      </div>
     <div class="col-12">
       <button class="btn btn-secondary" type="submit">Submit form</button>
     </div>
