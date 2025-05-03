@@ -15,6 +15,7 @@ public class ProductDAO {
         //getAllCategories().forEach(System.out::println);
         //getAllColors().forEach(System.out::println);
         //System.out.println(getProductCount("","1"));
+        System.out.println(getCart(7));
     }
 
     public static List<Product> getAll(int limit, int offset, String categories, String colors) {
@@ -106,6 +107,25 @@ public class ProductDAO {
                 int categoryId = rs.getInt("category_id");
                 int colorId = rs.getInt("color_id");
                 product = new Product(productId, name, price, description, categoryId, colorId);
+            }
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return product;
+    }
+
+    public static Product getCart(int product_id) {
+        Product product = null;
+        try(Connection connection = getConnection()) {
+            CallableStatement statement = connection.prepareCall("{call sp_get_product_cart(?)}");
+            statement.setInt(1, product_id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int productId = resultSet.getInt("product_id");
+                String name = resultSet.getString("name");
+                double price = resultSet.getDouble("price");
+                String description = resultSet.getString("description");
+                product = new Product(productId, name, price, description);
             }
         } catch(SQLException e) {
             throw new RuntimeException(e);

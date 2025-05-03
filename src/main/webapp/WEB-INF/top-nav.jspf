@@ -47,6 +47,11 @@
             </c:if>
           </ul>
           <div class="text-end">
+            <a href="${appURL}/cart" class="btn btn-primary me-2">
+              <i class="bi bi-cart"></i>
+              <c:if test="${not empty cart.totalProductCount}">${cart.totalProductCount}, </c:if>
+              <c:if test="${not empty cart.totalCost}"><fmt:formatNumber value="${cart.totalCost}" type="currency" /></c:if>
+            </a>
             <c:choose>
               <c:when test="${empty sessionScope.activeUser}">
                 <a href="${appURL}/login" class="btn btn-outline-dark me-2">Login</a>

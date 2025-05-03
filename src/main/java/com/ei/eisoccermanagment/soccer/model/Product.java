@@ -1,5 +1,7 @@
 package com.ei.eisoccermanagment.soccer.model;
 
+import java.util.Objects;
+
 public class Product {
     private int productId;
     private String name;
@@ -34,12 +36,27 @@ public class Product {
         this.colorId = colorId;
     }
 
+    public Product(int productId, String name, double price, String description) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
+
     public int getProductId() {
         return productId;
     }
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public void setProductId(String productId) {
+        try{
+            this.productId = Integer.parseInt(productId);
+        } catch(IllegalArgumentException e){
+            throw new IllegalArgumentException("Product ID must be an integer.");
+        }
     }
 
     public String getName() {
@@ -146,5 +163,17 @@ public class Product {
                 ", colorId=" + colorId +
                 ", colorName='" + colorName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(price, product.price) == 0 && categoryId == product.categoryId && Objects.equals(productId, product.productId) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(categoryName, product.categoryName) && Objects.equals(colorId, product.colorId) && Objects.equals(colorName, product.colorName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, name, price, description, categoryId, categoryName, colorId, colorName);
     }
 }

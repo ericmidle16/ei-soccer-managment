@@ -29,7 +29,16 @@
                 <p class="card-text">${product.description}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <small class="fw-bold"><fmt:formatNumber value="${product.price}" type="currency" /></small>
-                  <a href="${appURL}/add-to-cart?prod_id=${product.productId}" class="btn btn-secondary">Add to Cart</a>
+                  <form method="POST" action="${appURL}/add-to-cart" class=" w-75">
+                    <input type="hidden" name="product_id" value="${product.productId}">
+                    <div class="input-group">
+                      <div class="form-floating">
+                        <input type="number" min="0" class="form-control" id="quantity" name="quantity" value="1">
+                        <label for="quantity">Qty</label>
+                      </div>
+                      <button type="submit" class="btn btn-outline-primary btn-sm">Add to Cart</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
