@@ -67,6 +67,9 @@ public class ShoppingCart {
         return total;
     }
 
+    public Map<Product, Integer> getContents() {
+        return contents;
+    }
 
     public static void main(String[] args) {
         ShoppingCart cart = new ShoppingCart();
@@ -83,5 +86,7 @@ public class ShoppingCart {
             double totalPrice = price * quantity;
             System.out.printf("%s, Qty: %d, Price: %.2f, Total: %.2f\n", product.getName(), quantity, price, totalPrice);
         });
+        System.out.println("There are " + cart.getTotalProductCount() + " products");
+        System.out.println("Your total is " + cart.getTotalPrice());
     }
 }

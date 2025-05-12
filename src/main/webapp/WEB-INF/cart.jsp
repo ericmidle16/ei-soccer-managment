@@ -28,7 +28,7 @@
                       </div>
                       <div class="col-md-4">
                         <form method="POST" action="${appURL}/cart" class="d-flex justify-content-center align-items-end">
-                          <input type="hidden" name="product_id" value="${entry.key.id}">
+                          <input type="hidden" name="product_id" value="${entry.key.productId}">
                           <input type="hidden" name="action" value="update">
                           <div class="input-group w-50">
                             <div class="">
@@ -46,7 +46,7 @@
                       </div>
                       <div class="col-md-1 text-end">
                         <form method="POST" action="${appURL}/cart" class="d-flex justify-content-center align-items-end">
-                          <input type="hidden" name="prod_id" value="${entry.key.id}">
+                          <input type="hidden" name="product_id" value="${entry.key.productId}">
                           <input type="hidden" name="action" value="delete">
                           <button type="submit" class="text-muted"><i class="bi bi-trash"></i></button>
                         </form>

@@ -169,11 +169,11 @@ public class Product {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(price, product.price) == 0 && categoryId == product.categoryId && Objects.equals(productId, product.productId) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(categoryName, product.categoryName) && Objects.equals(colorId, product.colorId) && Objects.equals(colorName, product.colorName);
+        return productId == product.productId && Double.compare(price, product.price) == 0 && Objects.equals(name, product.name) && Objects.equals(description, product.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, name, price, description, categoryId, categoryName, colorId, colorName);
+        return Objects.hash(productId, name, price, description);
     }
 }
